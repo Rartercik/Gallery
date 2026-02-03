@@ -160,22 +160,17 @@ namespace Game.UI
 
             if (_alwaysSquare)
             {
-                // FIX: Only make square cells when we're fitting both dimensions
-                // or when we're not fitting any dimension
                 if ((fitX && fitY) || (!fitX && !fitY))
                 {
-                    // When fitting both or neither, use the minimum to ensure it fits
                     var min = Mathf.Min(result.x, result.y);
                     result.x = result.y = min;
                 }
                 else if (fitX && !fitY)
                 {
-                    // When fitting only width, use width as the size (height will stretch)
                     result.y = result.x;
                 }
                 else if (!fitX && fitY)
                 {
-                    // When fitting only height, use height as the size (width will stretch)
                     result.x = result.y;
                 }
             }
@@ -184,19 +179,15 @@ namespace Game.UI
 
         private void SetCells(Vector2 spacing, Vector2 cellSize)
         {
-            // Calculate total grid size
             float totalGridWidth = _columns * cellSize.x + (_columns - 1) * spacing.x;
             float totalGridHeight = _rows * cellSize.y + (_rows - 1) * spacing.y;
 
-            // Calculate available space
             float availableWidth = rectTransform.rect.width - padding.left - padding.right;
             float availableHeight = rectTransform.rect.height - padding.top - padding.bottom;
 
-            // Calculate starting position based on childAlignment
             float startX = padding.left;
             float startY = padding.top;
 
-            // Horizontal alignment
             switch (childAlignment)
             {
                 case TextAnchor.UpperLeft:
@@ -218,7 +209,6 @@ namespace Game.UI
                     break;
             }
 
-            // Vertical alignment
             switch (childAlignment)
             {
                 case TextAnchor.UpperLeft:
